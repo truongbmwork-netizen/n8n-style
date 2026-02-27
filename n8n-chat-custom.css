@@ -2842,17 +2842,98 @@ ul.user-stack-list li:hover {
     background: rgba(12, 73, 130, 0.45);
 }
 
-/* ---------- Links trong tin nhắn ---------- */
-.chat-message a,
+/* ---------- Links trong tin nhắn bot ---------- */
+.chat-message.chat-message-from-bot a,
 .chat-message-markdown a {
     color: #0C4982 !important;
     font-weight: 600;
-    text-decoration: underline;
+    text-decoration: none !important;
+    background: rgba(12, 73, 130, 0.08);
+    border: 1px solid rgba(12, 73, 130, 0.25);
+    border-radius: 0.4rem;
+    padding: 0.15em 0.5em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    transition: all 0.15s ease;
+    line-height: 1.5;
+    word-break: break-word;
 }
 
+.chat-message.chat-message-from-bot a:hover,
+.chat-message-markdown a:hover {
+    background: rgba(12, 73, 130, 0.15) !important;
+    border-color: #0C4982 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(12, 73, 130, 0.2);
+}
+
+/* Thêm icon 🔗 trước tất cả link */
+.chat-message.chat-message-from-bot a::before,
+.chat-message-markdown a::before {
+    content: '↗';
+    font-size: 0.85em;
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+/* Link Google Maps - đổi màu xanh lá */
+.chat-message.chat-message-from-bot a[href*="maps.app"],
+.chat-message.chat-message-from-bot a[href*="maps.google"],
+.chat-message-markdown a[href*="maps.app"],
+.chat-message-markdown a[href*="maps.google"] {
+    color: #1a6b3c !important;
+    background: rgba(26, 107, 60, 0.08) !important;
+    border-color: rgba(26, 107, 60, 0.3) !important;
+}
+
+.chat-message.chat-message-from-bot a[href*="maps.app"]::before,
+.chat-message.chat-message-from-bot a[href*="maps.google"]::before,
+.chat-message-markdown a[href*="maps.app"]::before,
+.chat-message-markdown a[href*="maps.google"]::before {
+    content: '📍';
+    font-size: 0.85em;
+}
+
+/* Link Facebook - màu xanh FB */
+.chat-message.chat-message-from-bot a[href*="facebook"],
+.chat-message.chat-message-from-bot a[href*="fb.com"],
+.chat-message-markdown a[href*="facebook"],
+.chat-message-markdown a[href*="fb.com"] {
+    color: #1877f2 !important;
+    background: rgba(24, 119, 242, 0.08) !important;
+    border-color: rgba(24, 119, 242, 0.3) !important;
+}
+
+.chat-message.chat-message-from-bot a[href*="facebook"]::before,
+.chat-message.chat-message-from-bot a[href*="fb.com"]::before,
+.chat-message-markdown a[href*="facebook"]::before,
+.chat-message-markdown a[href*="fb.com"]::before {
+    content: 'f';
+    font-weight: 900;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* Link Zalo */
+.chat-message.chat-message-from-bot a[href*="zalo"],
+.chat-message-markdown a[href*="zalo"] {
+    color: #0068ff !important;
+    background: rgba(0, 104, 255, 0.08) !important;
+    border-color: rgba(0, 104, 255, 0.3) !important;
+}
+
+.chat-message.chat-message-from-bot a[href*="zalo"]::before,
+.chat-message-markdown a[href*="zalo"]::before {
+    content: '💬';
+    font-size: 0.85em;
+}
+
+/* Link trong tin nhắn user - trắng */
 .chat-message.chat-message-from-user a {
-    color: #fff !important;
-    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* ---------- Mobile responsive ---------- */
