@@ -1,16 +1,16 @@
-/*! Package version @n8n/chat@1.9.3 */
+﻿/*! Package version @n8n/chat@1.9.3 */
 :root {
-    --chat--color--primary: #0C4982;
+    --chat--color--primary: #1E5189;
     --chat--color--primary-shade-50: #0a3b68;
-    --chat--color--primary--shade-100: #082d50;
-    --chat--color--secondary: #fdb813;
+    --chat--color--primary--shade-100: #122f54;
+    --chat--color--secondary: #329900;
     --chat--color-secondary-shade-50: #e4a611;
     --chat--color-white: #fff;
     --chat--color-light: #f2f4f8;
     --chat--color-light-shade-50: #e6e9f1;
     --chat--color-light-shade-100: #c2c5cc;
     --chat--color-medium: #d2d4d9;
-    --chat--color-dark: #0C4982;
+    --chat--color-dark: #1E5189;
     --chat--color-disabled: #d2d4d9;
     --chat--color-typing: #404040;
     --chat--spacing: 1rem;
@@ -2470,19 +2470,33 @@ ul.user-stack-list li:hover {
 /* ============================================================
    🎨 SƠN HÙNG BRAND CUSTOMIZATION
    Trung tâm Đào tạo lái xe Sơn Hùng
-   Primary: #0C4982 (Blue) | Secondary: #fdb813 (Gold)
+   Primary: #1E5189 (Blue) | Secondary: #329900 (Gold)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
 
 /* ---------- Root overrides ---------- */
 :root {
-    /* Thương hiệu Sơn Hùng */
-    --chat--color--primary: #0C4982;
-    --chat--color--primary-shade-50: #0a3e70;
-    --chat--color--primary--shade-100: #082d50;
-    --chat--color--secondary: #fdb813;
-    --chat--color-secondary-shade-50: #e5a610;
+    /* ── Màu thương hiệu Sơn Hùng ── */
+    --sh-blue: #1E5189;
+    /* Xanh dương chủ đạo */
+    --sh-blue-dark: #184070;
+    /* Xanh đậm hơn */
+    --sh-blue-darker: #122f54;
+    /* Xanh rất đậm */
+    --sh-green: #329900;
+    /* Xanh lá nhấn */
+    --sh-green-dark: #277800;
+    /* Xanh lá đậm hơn */
+    --sh-green-light: #5ab830;
+    /* Xanh lá nhạt hơn */
+
+    /* n8n CSS variables → map sang màu Sơn Hùng */
+    --chat--color--primary: #1E5189;
+    --chat--color--primary-shade-50: #184070;
+    --chat--color--primary--shade-100: #122f54;
+    --chat--color--secondary: #329900;
+    --chat--color-secondary-shade-50: #277800;
 
     /* Border radius - Bo góc nhiều hơn */
     --chat--border-radius: 1.25rem;
@@ -2491,41 +2505,41 @@ ul.user-stack-list li:hover {
     --chat--button--border-radius: 2rem;
     --chat--input--border-radius: 1rem;
 
-    /* Font */
-    --chat--font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    /* Font — Inter cho số/Latin, Be Vietnam Pro cho tiếng Việt */
+    --chat--font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
     /* Window size */
     --chat--window--width: 400px;
     --chat--window--height: 620px;
 
-    /* Header gradient */
-    --chat--header--background: linear-gradient(135deg, #0C4982 0%, #0a3e70 60%, #082d50 100%);
+    /* Header gradient xanh dương */
+    --chat--header--background: linear-gradient(135deg, #1E5189 0%, #184070 60%, #122f54 100%);
     --chat--header--color: #ffffff;
     --chat--heading--font-size: 1.3em;
 
     /* Message colors */
     --chat--message--bot--background: #ffffff;
-    --chat--message--user--background: linear-gradient(135deg, #fdb813 0%, #e5a610 100%);
+    --chat--message--user--background: linear-gradient(135deg, #329900 0%, #277800 100%);
     --chat--message--user--color: #ffffff;
 
     /* Input area */
     --chat--input--border-radius: 1rem;
-    --chat--input--border: 1px solid #e0e7f0;
+    --chat--input--border: 1px solid #dce8f5;
     --chat--textarea--height: 52px;
 
     /* Body & Footer */
-    --chat--body--background: #f4f7fb;
+    --chat--body--background: #f2f6fb;
     --chat--footer--background: #ffffff;
 
-    /* Button send */
-    --chat--input--send--button--background: transparent;
-    --chat--input--send--button--color: #fdb813;
-    --chat--input--send--button--background-hover: #fdb813;
+    /* Send button — xanh lá */
+    --chat--input--send--button--background: #1E5189;
+    --chat--input--send--button--color: #ffffff;
+    --chat--input--send--button--background-hover: #329900;
     --chat--input--send--button--color-hover: #ffffff;
 
     /* Toggle button */
-    --chat--toggle--background: #0C4982;
-    --chat--toggle--hover--background: #0a3e70;
+    --chat--toggle--background: #1E5189;
+    --chat--toggle--hover--background: #184070;
     --chat--toggle--size: 60px;
     --chat--toggle--border-radius: 50%;
 
@@ -2535,20 +2549,20 @@ ul.user-stack-list li:hover {
 
 /* ---------- Chat Window ---------- */
 .chat-window-wrapper .chat-window {
-    box-shadow: 0 20px 60px rgba(12, 73, 130, 0.2), 0 8px 20px rgba(12, 73, 130, 0.12);
+    box-shadow: 0 20px 60px rgba(30, 81, 137, 0.2), 0 8px 20px rgba(30, 81, 137, 0.12);
     border-radius: var(--chat--window--border-radius) !important;
     overflow: hidden;
 }
 
 /* ---------- Toggle (nút mở chat) ---------- */
 .chat-window-wrapper .chat-window-toggle {
-    box-shadow: 0 6px 24px rgba(12, 73, 130, 0.4);
+    box-shadow: 0 6px 24px rgba(30, 81, 137, 0.45);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
 }
 
 .chat-window-wrapper .chat-window-toggle:hover,
 .chat-window-wrapper .chat-window-toggle:focus {
-    box-shadow: 0 10px 32px rgba(12, 73, 130, 0.55);
+    box-shadow: 0 10px 32px rgba(30, 81, 137, 0.6);
     transform: scale(1.08) !important;
 }
 
@@ -2596,7 +2610,7 @@ ul.user-stack-list li:hover {
     right: 0;
     bottom: 0;
     height: 3px;
-    background: linear-gradient(90deg, #fdb813 0%, #ffe082 50%, #fdb813 100%);
+    background: linear-gradient(90deg, #329900 0%, #5ab830 50%, #329900 100%);
 }
 
 /* .chat-heading (chứa h1): cột 2, row 1 */
@@ -2650,7 +2664,7 @@ ul.user-stack-list li:hover {
 }
 
 .chat-close-button:hover {
-    color: #fdb813 !important;
+    color: #329900 !important;
     transform: scale(1.15);
 }
 
@@ -2668,7 +2682,7 @@ ul.user-stack-list li:hover {
 .chat-message.chat-message-from-bot {
     background: #ffffff !important;
     border-radius: 1.25rem 1.25rem 1.25rem 0.25rem !important;
-    box-shadow: 0 2px 8px rgba(12, 73, 130, 0.08);
+    box-shadow: 0 2px 8px rgba(30, 81, 137, 0.08);
     color: #1a2e4a !important;
     max-width: 88%;
     animation: chatMsgSlideIn 0.25s ease;
@@ -2676,7 +2690,7 @@ ul.user-stack-list li:hover {
 
 /* User message */
 .chat-message.chat-message-from-user {
-    background: linear-gradient(135deg, #fdb813 0%, #e5a610 100%) !important;
+    background: linear-gradient(135deg, #329900 0%, #277800 100%) !important;
     border-radius: 1.25rem 1.25rem 0.25rem 1.25rem !important;
     box-shadow: 0 2px 8px rgba(253, 184, 19, 0.35);
     color: #ffffff !important;
@@ -2720,27 +2734,27 @@ ul.user-stack-list li:hover {
 }
 
 .chat-button-primary {
-    background: linear-gradient(135deg, #fdb813 0%, #e5a610 100%) !important;
+    background: linear-gradient(135deg, #329900 0%, #277800 100%) !important;
     color: #fff !important;
     box-shadow: 0 2px 8px rgba(253, 184, 19, 0.35) !important;
     border: none !important;
 }
 
 .chat-button-primary:hover {
-    background: linear-gradient(135deg, #e5a610 0%, #cc9200 100%) !important;
+    background: linear-gradient(135deg, #277800 0%, #1d6000 100%) !important;
     box-shadow: 0 4px 14px rgba(253, 184, 19, 0.5) !important;
     transform: translateY(-1px) !important;
 }
 
 .chat-button-secondary {
     background: transparent !important;
-    color: #0C4982 !important;
-    border: 2px solid #0C4982 !important;
+    color: #1E5189 !important;
+    border: 2px solid #1E5189 !important;
     box-shadow: none !important;
 }
 
 .chat-button-secondary:hover {
-    background: #0C4982 !important;
+    background: #1E5189 !important;
     color: #ffffff !important;
     transform: translateY(-1px) !important;
 }
@@ -2762,8 +2776,8 @@ ul.user-stack-list li:hover {
 }
 
 .chat-inputs:focus-within {
-    border-color: #0C4982 !important;
-    box-shadow: 0 0 0 3px rgba(12, 73, 130, 0.12) !important;
+    border-color: #1E5189 !important;
+    box-shadow: 0 0 0 3px rgba(30, 81, 137, 0.12) !important;
 }
 
 .chat-inputs textarea {
@@ -2783,16 +2797,16 @@ ul.user-stack-list li:hover {
     width: 44px !important;
     height: 44px !important;
     border-radius: 50% !important;
-    background: linear-gradient(135deg, #0C4982 0%, #0a3e70 100%) !important;
-    color: #fdb813 !important;
+    background: linear-gradient(135deg, #1E5189 0%, #184070 100%) !important;
+    color: #329900 !important;
     margin: 4px !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-    box-shadow: 0 2px 8px rgba(12, 73, 130, 0.3) !important;
+    box-shadow: 0 2px 8px rgba(30, 81, 137, 0.3) !important;
 }
 
 .chat-input-send-button:hover {
     transform: scale(1.08) !important;
-    box-shadow: 0 4px 14px rgba(12, 73, 130, 0.45) !important;
+    box-shadow: 0 4px 14px rgba(30, 81, 137, 0.45) !important;
 }
 
 /* ---------- Powered by ---------- */
@@ -2804,7 +2818,7 @@ ul.user-stack-list li:hover {
 }
 
 .chat-powered-by a {
-    color: #0C4982 !important;
+    color: #1E5189 !important;
 }
 
 /* ---------- Welcome/Get started ---------- */
@@ -2816,11 +2830,11 @@ ul.user-stack-list li:hover {
 .chat-message-typing {
     background: #ffffff !important;
     border-radius: 1.25rem 1.25rem 1.25rem 0.25rem !important;
-    box-shadow: 0 2px 8px rgba(12, 73, 130, 0.08) !important;
+    box-shadow: 0 2px 8px rgba(30, 81, 137, 0.08) !important;
 }
 
 .chat-message-typing .chat-message-typing-circle {
-    background-color: #0C4982 !important;
+    background-color: #1E5189 !important;
     opacity: 0.7;
 }
 
@@ -2834,22 +2848,22 @@ ul.user-stack-list li:hover {
 }
 
 .chat-layout .chat-body::-webkit-scrollbar-thumb {
-    background: rgba(12, 73, 130, 0.25);
+    background: rgba(30, 81, 137, 0.25);
     border-radius: 2px;
 }
 
 .chat-layout .chat-body::-webkit-scrollbar-thumb:hover {
-    background: rgba(12, 73, 130, 0.45);
+    background: rgba(30, 81, 137, 0.45);
 }
 
 /* ---------- Links trong tin nhắn bot ---------- */
 .chat-message.chat-message-from-bot a,
 .chat-message-markdown a {
-    color: #0C4982 !important;
+    color: #1E5189 !important;
     font-weight: 600;
     text-decoration: none !important;
-    background: rgba(12, 73, 130, 0.08);
-    border: 1px solid rgba(12, 73, 130, 0.25);
+    background: rgba(30, 81, 137, 0.08);
+    border: 1px solid rgba(30, 81, 137, 0.25);
     border-radius: 0.4rem;
     padding: 0.15em 0.5em;
     display: inline-flex;
@@ -2862,10 +2876,10 @@ ul.user-stack-list li:hover {
 
 .chat-message.chat-message-from-bot a:hover,
 .chat-message-markdown a:hover {
-    background: rgba(12, 73, 130, 0.15) !important;
-    border-color: #0C4982 !important;
+    background: rgba(30, 81, 137, 0.15) !important;
+    border-color: #1E5189 !important;
     transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(12, 73, 130, 0.2);
+    box-shadow: 0 2px 6px rgba(30, 81, 137, 0.2);
 }
 
 /* Thêm icon 🔗 trước tất cả link */
@@ -2936,7 +2950,37 @@ ul.user-stack-list li:hover {
     border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
-/* ---------- Mobile responsive ---------- */
+/* ============================================================
+   📱 MOBILE OPTIMIZATION
+   ─ Tối ưu toàn diện cho màn hình nhỏ
+   ============================================================ */
+
+/* Font smoothing toàn cục cho mobile */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tablet: thu nhỏ một chút */
+@media (max-width: 600px) {
+    :root {
+        --chat--window--width: calc(100vw - 24px);
+        --chat--window--height: min(75dvh, 580px);
+        --chat--window--bottom: 80px;
+        --chat--window--right: 12px;
+        --chat--window--border-radius: 1.25rem;
+    }
+
+    /* Tooltip thu nhỏ, đẩy sang trái */
+    .sh-chat-tooltip {
+        max-width: 230px;
+        right: 76px;
+        bottom: 88px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile nhỏ: full screen */
 @media (max-width: 480px) {
     :root {
         --chat--window--width: 100vw;
@@ -2946,7 +2990,232 @@ ul.user-stack-list li:hover {
         --chat--window--border-radius: 0;
     }
 
+    /* Xóa border-radius khi full screen */
     .chat-window-wrapper .chat-window {
         border-radius: 0 !important;
+        max-height: 100dvh !important;
+    }
+
+    /* Safe area cho iPhone (notch / home bar) */
+    .chat-layout .chat-footer,
+    .chat-layout .chat-footer-wrapper {
+        padding-bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
+    }
+
+    .chat-layout .chat-header {
+        padding-top: max(0.75rem, env(safe-area-inset-top)) !important;
+    }
+
+    /* Header compact hơn trên mobile */
+    .chat-layout .chat-header {
+        padding: 0.65rem 1rem 0.65rem !important;
+        min-height: 56px;
+    }
+
+    .chat-layout .chat-header h1 {
+        font-size: 0.95rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .chat-layout .chat-header p {
+        font-size: 0.7rem !important;
+    }
+
+    /* Logo nhỏ hơn trên mobile */
+    .chat-layout .chat-header::before {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    /* Touch target tối thiểu 44px cho nút */
+    .chat-layout .chat-footer button,
+    .chat-window-toggle,
+    .chat-close-button {
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+
+    /* Input area thoải mái hơn trên mobile */
+    .chat-layout .chat-input {
+        font-size: 1rem !important;
+        /* tránh auto-zoom trên iOS */
+        padding: 0.75rem 1rem !important;
+    }
+
+    /* Tin nhắn: padding thoải mái hơn */
+    .chat-message {
+        max-width: 90% !important;
+        font-size: 0.88rem !important;
+    }
+
+    /* Hide toggle button khi chat đang mở (full screen) */
+    .chat-window-wrapper.chat-window-open .chat-window-toggle {
+        display: none !important;
+    }
+
+    /* Tooltip hiển thị phía trên, canh phải */
+    .sh-chat-tooltip {
+        right: 12px !important;
+        bottom: 88px !important;
+        max-width: calc(100vw - 24px) !important;
+        left: 12px !important;
+        width: auto !important;
+        border-radius: 1rem !important;
+    }
+
+    /* Tooltip mũi tên hướng xuống phải trên mobile */
+    .sh-chat-tooltip::after {
+        right: 28px !important;
+    }
+}
+
+/* ============================================================
+   💬 CHAT TEASER TOOLTIP — Sơn Hùng
+   Hiện phía trên nút toggle để thu hút người dùng
+   ============================================================ */
+
+/* Container bọc ngoài nút toggle để định vị tooltip */
+.sh-chat-tooltip {
+    position: fixed;
+    bottom: 96px;
+    right: 20px;
+    max-width: 260px;
+    background: #ffffff;
+    border-radius: 1rem 1rem 0.25rem 1rem;
+    box-shadow:
+        0 8px 32px rgba(30, 81, 137, 0.18),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0.85rem 1rem 0.85rem 1rem;
+    z-index: 9998;
+    border: 1.5px solid rgba(30, 81, 137, 0.12);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+
+    /* Animation xuất hiện */
+    animation: tooltipSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transform-origin: bottom right;
+}
+
+/* Đuôi mũi tên chỉ xuống nút chat */
+.sh-chat-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 18px;
+    border-width: 10px 8px 0 8px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+    filter: drop-shadow(0 2px 2px rgba(30, 81, 137, 0.1));
+}
+
+/* Đường viền xanh bên trái */
+.sh-chat-tooltip::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #1E5189 0%, #329900 100%);
+    border-radius: 1rem 0 0 0.25rem;
+}
+
+/* Icon bên trái */
+.sh-chat-tooltip__icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* Phần text */
+.sh-chat-tooltip__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.sh-chat-tooltip__text {
+    font-family: 'Be Vietnam Pro', -apple-system, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #1a2e4a;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.sh-chat-tooltip__cta {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-family: 'Be Vietnam Pro', 'Inter', -apple-system, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1E5189;
+    background: rgba(30, 81, 137, 0.07);
+    border: 1px solid rgba(30, 81, 137, 0.2);
+    border-radius: 2rem;
+    padding: 0.2em 0.75em;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+    letter-spacing: 0.01em;
+}
+
+.sh-chat-tooltip__cta:hover {
+    background: rgba(30, 81, 137, 0.14);
+    transform: scale(1.04);
+}
+
+/* Nút đóng (X) */
+.sh-chat-tooltip__close {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(30, 81, 137, 0.08);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #5a7a9a;
+    padding: 0;
+    line-height: 1;
+    transition: background 0.15s, color 0.15s;
+    margin-top: 1px;
+}
+
+.sh-chat-tooltip__close:hover {
+    background: #329900;
+    color: #ffffff;
+}
+
+/* Trạng thái ẩn */
+.sh-chat-tooltip.sh-hidden {
+    animation: tooltipSlideOut 0.25s ease forwards;
+    pointer-events: none;
+}
+
+/* Keyframes */
+@keyframes tooltipSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7) translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes tooltipSlideOut {
+    from {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.8) translateY(8px);
     }
 }
