@@ -2567,26 +2567,25 @@ ul.user-stack-list li:hover {
     justify-content: initial !important;
 }
 
-/* Icon vào cột 1, span 2 rows */
+/* Logo Sơn Hùng vào cột 1, span 2 rows */
 .chat-layout .chat-header::before {
-    content: '🚗';
+    content: '';
     grid-column: 1;
     grid-row: 1 / 3;
-    font-size: 1.4rem;
-    background: rgba(255, 255, 255, 0.15);
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 2px;
-    border: 1.5px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    background-image: url('https://daotaolaixesonhung.com/wp-content/uploads/2026/01/logo-2-scaled.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
     align-self: center;
     justify-self: center;
+    display: block;
 }
 
 /* Đường kẻ vàng phía dưới header */
