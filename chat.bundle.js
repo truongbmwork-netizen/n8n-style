@@ -11813,7 +11813,7 @@ const MessageComponentKey = { WITH_BUTTONS: "with-buttons" }, defaultOptions = {
 	chatInputKey: "chatInput",
 	chatSessionKey: "sessionId",
 	defaultLanguage: "en",
-	showWelcomeScreen: !1,
+	showWelcomeScreen: !0,
 	initialMessages: ["Xin chào! 👋", "Sơn Hùng có thể giúp gì cho bạn hôm nay?"],
 	i18n: { en: {
 		title: "Trung tâm Sơn Hùng 👋",
