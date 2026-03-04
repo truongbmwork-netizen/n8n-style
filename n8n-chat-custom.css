@@ -2479,7 +2479,9 @@ ul.user-stack-list li:hover {
 /* ============================================================
    BASE — Font smoothing toàn cục
    ============================================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
@@ -2743,6 +2745,7 @@ ul.user-stack-list li:hover {
 
 /* FIX: Tắt animation khi user prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
     .chat-message.chat-message-from-bot,
     .chat-message.chat-message-from-user {
         animation: none;
@@ -2750,13 +2753,27 @@ ul.user-stack-list li:hover {
 }
 
 @keyframes chatMsgSlideIn {
-    from { opacity: 0; transform: translateX(-12px); }
-    to   { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @keyframes chatMsgSlideInRight {
-    from { opacity: 0; transform: translateX(12px); }
-    to   { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* ============================================================
@@ -3097,13 +3114,18 @@ ul.user-stack-list li:hover {
         height: 100dvh !important;
         max-width: 100vw !important;
         max-height: 100dvh !important;
-        pointer-events: none;
+        pointer-events: none !important;
     }
 
     /* FIX: Chỉ window & toggle nhận pointer events */
     .chat-window-wrapper .chat-window,
     .chat-window-wrapper .chat-window-toggle {
-        pointer-events: auto;
+        pointer-events: auto !important;
+    }
+
+    /* FIX: Force toggle hiển thị — n8n widget có thể set display:none qua JS */
+    .chat-window-wrapper .chat-window-toggle {
+        display: inline-flex !important;
     }
 
     /* ── Chat window: full screen ── */
@@ -3210,7 +3232,13 @@ ul.user-stack-list li:hover {
     }
 
     /* ── Hide toggle khi window đang mở (full screen) ── */
-    .chat-window-wrapper:has(.chat-window:not([style*="display: none"])) .chat-window-toggle {
+    /* FIX: Logic cũ dùng :not([style*="display: none"]) match cả khi window
+       chưa có style attribute (vừa load) → ẩn toggle sai.
+       Logic mới: chỉ ẩn khi window RÕ RÀNG đang hiển thị */
+    .chat-window-wrapper:has(.chat-window[style*="display: flex"]) .chat-window-toggle,
+    .chat-window-wrapper:has(.chat-window[style*="display: block"]) .chat-window-toggle,
+    .chat-window-wrapper:has(.chat-window[style*="display:flex"]) .chat-window-toggle,
+    .chat-window-wrapper:has(.chat-window[style*="display:block"]) .chat-window-toggle {
         display: none !important;
     }
 
@@ -3408,6 +3436,7 @@ ul.user-stack-list li:hover {
         opacity: 0;
         transform: scale(0.7) translateY(12px);
     }
+
     to {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -3419,6 +3448,7 @@ ul.user-stack-list li:hover {
         opacity: 1;
         transform: scale(1) translateY(0);
     }
+
     to {
         opacity: 0;
         transform: scale(0.8) translateY(8px);
