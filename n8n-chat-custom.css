@@ -1,4 +1,4 @@
-﻿/*! Package version @n8n/chat@1.9.3 */
+/*! Package version @n8n/chat@1.9.3 */
 :root {
     --chat--color--primary: #1E5189;
     --chat--color--primary-shade-50: #0a3b68;
@@ -2257,7 +2257,8 @@ ul.user-stack-list li:hover {
     max-height: calc(100% - var(--chat--window--bottom, var(--chat--spacing))*2);
     flex-direction: column;
     display: flex;
-    position: fixed
+    position: fixed;
+    box-sizing: border-box
 }
 
 .chat-window-wrapper .chat-window {
@@ -2971,6 +2972,12 @@ ul.user-stack-list li:hover {
         --chat--window--border-radius: 1.25rem;
     }
 
+    /* Toggle button: đảm bảo không dính sát mép */
+    .chat-window-wrapper .chat-window-toggle {
+        margin-right: 4px;
+        margin-bottom: 8px;
+    }
+
     /* Tooltip thu nhỏ, đẩy sang trái */
     .sh-chat-tooltip {
         max-width: 230px;
@@ -2988,72 +2995,116 @@ ul.user-stack-list li:hover {
         --chat--window--bottom: 0;
         --chat--window--right: 0;
         --chat--window--border-radius: 0;
+        --chat--window--margin-bottom: 0;
     }
 
-    /* Xóa border-radius khi full screen */
+    /* ── Chat window wrapper: full viewport ── */
+    .chat-window-wrapper {
+        max-width: 100vw !important;
+        max-height: 100dvh !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+    }
+
+    /* ── Chat window: full screen, no border-radius ── */
     .chat-window-wrapper .chat-window {
         border-radius: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        max-width: 100vw !important;
         max-height: 100dvh !important;
+        margin-bottom: 0 !important;
+        box-shadow: none !important;
     }
 
-    /* Safe area cho iPhone (notch / home bar) */
+    /* ── Safe area cho iPhone (notch / home bar) ── */
     .chat-layout .chat-footer,
     .chat-layout .chat-footer-wrapper {
         padding-bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
     }
 
     .chat-layout .chat-header {
-        padding-top: max(0.75rem, env(safe-area-inset-top)) !important;
+        padding-top: max(0.65rem, env(safe-area-inset-top)) !important;
     }
 
-    /* Header compact hơn trên mobile */
+    /* ── Header compact hơn trên mobile ── */
     .chat-layout .chat-header {
-        padding: 0.65rem 1rem 0.65rem !important;
+        padding: 0.65rem 0.75rem 0.65rem 0.75rem !important;
         min-height: 56px;
     }
 
     .chat-layout .chat-header h1 {
-        font-size: 0.95rem !important;
+        font-size: 0.88rem !important;
         line-height: 1.2 !important;
     }
 
     .chat-layout .chat-header p {
-        font-size: 0.7rem !important;
+        font-size: 0.68rem !important;
     }
 
-    /* Logo nhỏ hơn trên mobile */
+    /* ── Logo nhỏ hơn trên mobile ── */
     .chat-layout .chat-header::before {
         width: 36px !important;
         height: 36px !important;
     }
 
-    /* Touch target tối thiểu 44px cho nút */
-    .chat-layout .chat-footer button,
-    .chat-window-toggle,
+    .chat-layout .chat-header {
+        grid-template-columns: 36px 1fr auto !important;
+    }
+
+    /* ── Touch target tối thiểu 44px cho nút ── */
     .chat-close-button {
         min-width: 44px !important;
         min-height: 44px !important;
     }
 
-    /* Input area thoải mái hơn trên mobile */
-    .chat-layout .chat-input {
-        font-size: 1rem !important;
-        /* tránh auto-zoom trên iOS */
-        padding: 0.75rem 1rem !important;
+    /* ── Send button: nhỏ lại cho phù hợp mobile ── */
+    .chat-input-send-button {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+        font-size: 18px !important;
+        margin: 3px !important;
+        box-shadow: 0 1px 4px rgba(30, 81, 137, 0.25) !important;
     }
 
-    /* Tin nhắn: padding thoải mái hơn */
+    /* ── Input area: thoải mái hơn trên mobile ── */
+    .chat-inputs {
+        border-radius: 0.75rem !important;
+    }
+
+    .chat-inputs textarea {
+        font-size: 0.92rem !important;
+        padding: 0.7rem 0.65rem !important;
+        min-height: 40px !important;
+        height: 40px !important;
+    }
+
+    .chat-layout .chat-footer {
+        padding: 0.6rem 0.75rem !important;
+    }
+
+    /* ── Tin nhắn: padding thoải mái hơn ── */
     .chat-message {
         max-width: 90% !important;
         font-size: 0.88rem !important;
     }
 
-    /* Hide toggle button khi chat đang mở (full screen) */
-    .chat-window-wrapper.chat-window-open .chat-window-toggle {
+    .chat-messages-list {
+        padding: 0.75rem !important;
+    }
+
+    /* ── Hide toggle button khi chat đang mở (full screen) ── */
+    .chat-window-wrapper .chat-window-toggle {
         display: none !important;
     }
 
-    /* Tooltip hiển thị phía trên, canh phải */
+    /* ── Tooltip hiển thị phía trên, canh phải ── */
     .sh-chat-tooltip {
         right: 12px !important;
         bottom: 88px !important;
@@ -3063,7 +3114,7 @@ ul.user-stack-list li:hover {
         border-radius: 1rem !important;
     }
 
-    /* Tooltip mũi tên hướng xuống phải trên mobile */
+    /* ── Tooltip mũi tên hướng xuống phải trên mobile ── */
     .sh-chat-tooltip::after {
         right: 28px !important;
     }
