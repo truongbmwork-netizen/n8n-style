@@ -106,6 +106,16 @@
     --chat--footer--color: var(--chat--color-dark)
 }
 
+/* SEO FIX: Overwrite H1 Styles to act like normal text */
+.n8n-chat h1,
+.chat-window h1 {
+    display: block !important;
+    font-size: var(--chat--heading--font-size, 1.5rem) !important;
+    font-weight: bold !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 pre code.hljs {
     padding: 1em;
     display: block;
@@ -2257,7 +2267,8 @@ ul.user-stack-list li:hover {
     max-height: calc(100% - var(--chat--window--bottom, var(--chat--spacing))*2);
     flex-direction: column;
     display: flex;
-    position: fixed
+    position: fixed;
+    box-sizing: border-box
 }
 
 .chat-window-wrapper .chat-window {
@@ -2468,61 +2479,70 @@ ul.user-stack-list li:hover {
 /*$vite$:1*/
 
 /* ============================================================
-   🎨 SƠN HÙNG BRAND CUSTOMIZATION
+   🎨 SƠN HÙNG BRAND CUSTOMIZATION — MOBILE OPTIMIZED v2
    Trung tâm Đào tạo lái xe Sơn Hùng
-   Primary: #1E5189 (Blue) | Secondary: #329900 (Gold)
+   Primary: #1E5189 (Blue) | Secondary: #329900 (Green)
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
 
-/* ---------- Root overrides ---------- */
+/* ============================================================
+   BASE — Font smoothing toàn cục
+   ============================================================ */
+*,
+*::before,
+*::after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   ROOT — CSS Variables
+   ============================================================ */
 :root {
     /* ── Màu thương hiệu Sơn Hùng ── */
     --sh-blue: #1E5189;
-    /* Xanh dương chủ đạo */
     --sh-blue-dark: #184070;
-    /* Xanh đậm hơn */
     --sh-blue-darker: #122f54;
-    /* Xanh rất đậm */
     --sh-green: #329900;
-    /* Xanh lá nhấn */
     --sh-green-dark: #277800;
-    /* Xanh lá đậm hơn */
     --sh-green-light: #5ab830;
-    /* Xanh lá nhạt hơn */
 
-    /* n8n CSS variables → map sang màu Sơn Hùng */
+    /* n8n CSS variables → Sơn Hùng */
     --chat--color--primary: #1E5189;
     --chat--color--primary-shade-50: #184070;
     --chat--color--primary--shade-100: #122f54;
     --chat--color--secondary: #329900;
     --chat--color-secondary-shade-50: #277800;
 
-    /* Border radius - Bo góc nhiều hơn */
+    /* Border radius */
     --chat--border-radius: 1.25rem;
     --chat--window--border-radius: 1.5rem;
     --chat--message--border-radius: 1.25rem;
     --chat--button--border-radius: 2rem;
     --chat--input--border-radius: 1rem;
 
-    /* Font — Inter cho số/Latin, Be Vietnam Pro cho tiếng Việt */
+    /* Font */
     --chat--font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-    /* Window size */
+    /* Window size — Desktop default */
     --chat--window--width: 400px;
     --chat--window--height: 620px;
+    --chat--window--bottom: 1rem;
+    --chat--window--right: 1rem;
 
-    /* Header gradient xanh dương */
+    /* Header */
     --chat--header--background: linear-gradient(135deg, #1E5189 0%, #184070 60%, #122f54 100%);
     --chat--header--color: #ffffff;
     --chat--heading--font-size: 1.3em;
 
-    /* Message colors */
+    /* Messages */
     --chat--message--bot--background: #ffffff;
     --chat--message--user--background: linear-gradient(135deg, #329900 0%, #277800 100%);
     --chat--message--user--color: #ffffff;
 
-    /* Input area */
+    /* Input */
     --chat--input--border-radius: 1rem;
     --chat--input--border: 1px solid #dce8f5;
     --chat--textarea--height: 52px;
@@ -2531,33 +2551,47 @@ ul.user-stack-list li:hover {
     --chat--body--background: #f2f6fb;
     --chat--footer--background: #ffffff;
 
-    /* Send button — xanh lá */
+    /* Send button */
     --chat--input--send--button--background: #1E5189;
-    --chat--input--send--button--color: #ffffff;
+    --chat--input--send--button--color: #329900;
     --chat--input--send--button--background-hover: #329900;
     --chat--input--send--button--color-hover: #ffffff;
 
-    /* Toggle button */
+    /* Toggle */
     --chat--toggle--background: #1E5189;
     --chat--toggle--hover--background: #184070;
     --chat--toggle--size: 60px;
     --chat--toggle--border-radius: 50%;
 
-    /* Window shadow */
+    /* No border on window */
     --chat--window--border: none;
 }
 
-/* ---------- Chat Window ---------- */
+/* ============================================================
+   CHAT WINDOW
+   ============================================================ */
 .chat-window-wrapper .chat-window {
-    box-shadow: 0 20px 60px rgba(30, 81, 137, 0.2), 0 8px 20px rgba(30, 81, 137, 0.12);
+    box-shadow:
+        0 20px 60px rgba(30, 81, 137, 0.2),
+        0 8px 20px rgba(30, 81, 137, 0.12);
     border-radius: var(--chat--window--border-radius) !important;
     overflow: hidden;
 }
 
-/* ---------- Toggle (nút mở chat) ---------- */
+/* ============================================================
+   TOGGLE BUTTON
+   ============================================================ */
 .chat-window-wrapper .chat-window-toggle {
     box-shadow: 0 6px 24px rgba(30, 81, 137, 0.45);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+    /* FIX: Tách riêng transition để tránh override lẫn nhau */
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease !important;
+    /* FIX: Đảm bảo touch target đủ lớn (44px minimum) */
+    min-width: var(--chat--toggle--size);
+    min-height: var(--chat--toggle--size);
+    touch-action: manipulation;
 }
 
 .chat-window-wrapper .chat-window-toggle:hover,
@@ -2566,12 +2600,21 @@ ul.user-stack-list li:hover {
     transform: scale(1.08) !important;
 }
 
-/* ---------- Header: CSS Grid layout (icon | text | close) ---------- */
+/* FIX: Active state cho mobile tap */
+.chat-window-wrapper .chat-window-toggle:active {
+    transform: scale(0.94) !important;
+    box-shadow: 0 3px 10px rgba(30, 81, 137, 0.3);
+}
+
+/* ============================================================
+   HEADER — CSS Grid layout
+   ============================================================ */
 .chat-layout .chat-header {
     display: grid !important;
     grid-template-columns: 44px 1fr auto !important;
     grid-template-rows: auto auto !important;
     align-items: center !important;
+    /* FIX: Thêm padding-top safe area cho notch iOS — fallback đúng thứ tự */
     padding: 0.85rem 1rem 0.85rem 0.9rem !important;
     gap: 0 !important;
     column-gap: 0.65rem !important;
@@ -2581,7 +2624,7 @@ ul.user-stack-list li:hover {
     justify-content: initial !important;
 }
 
-/* Logo Sơn Hùng vào cột 1, span 2 rows */
+/* Logo Sơn Hùng — cột 1, span 2 rows */
 .chat-layout .chat-header::before {
     content: '';
     grid-column: 1;
@@ -2602,7 +2645,7 @@ ul.user-stack-list li:hover {
     display: block;
 }
 
-/* Đường kẻ vàng phía dưới header */
+/* Đường kẻ xanh lá phía dưới header */
 .chat-layout .chat-header::after {
     content: '';
     position: absolute;
@@ -2613,7 +2656,7 @@ ul.user-stack-list li:hover {
     background: linear-gradient(90deg, #329900 0%, #5ab830 50%, #329900 100%);
 }
 
-/* .chat-heading (chứa h1): cột 2, row 1 */
+/* Tiêu đề — cột 2, row 1 */
 .chat-heading {
     grid-column: 2 !important;
     grid-row: 1 !important;
@@ -2623,7 +2666,6 @@ ul.user-stack-list li:hover {
     padding-bottom: 0.05rem;
 }
 
-/* Tiêu đề h1 */
 .chat-layout .chat-header h1 {
     font-size: 0.92rem !important;
     font-weight: 700 !important;
@@ -2636,7 +2678,7 @@ ul.user-stack-list li:hover {
     text-overflow: ellipsis;
 }
 
-/* Subtitle p: cột 2, row 2 */
+/* Subtitle — cột 2, row 2 */
 .chat-layout .chat-header p {
     grid-column: 2 !important;
     grid-row: 2 !important;
@@ -2652,7 +2694,7 @@ ul.user-stack-list li:hover {
     padding-top: 0.05rem;
 }
 
-/* Nút close: cột 3, span 2 rows */
+/* Nút close — cột 3, span 2 rows */
 .chat-close-button {
     grid-column: 3 !important;
     grid-row: 1 / 3 !important;
@@ -2661,6 +2703,13 @@ ul.user-stack-list li:hover {
     flex-shrink: 0;
     align-self: center;
     justify-self: end;
+    /* FIX: Touch target đủ lớn */
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
 }
 
 .chat-close-button:hover {
@@ -2668,10 +2717,15 @@ ul.user-stack-list li:hover {
     transform: scale(1.15);
 }
 
-/* ---------- Messages area ---------- */
+/* ============================================================
+   MESSAGES AREA
+   ============================================================ */
 .chat-layout .chat-body {
     background: var(--chat--body--background);
     padding: 0;
+    /* FIX: Smooth scrolling trên iOS */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 .chat-messages-list {
@@ -2692,11 +2746,20 @@ ul.user-stack-list li:hover {
 .chat-message.chat-message-from-user {
     background: linear-gradient(135deg, #329900 0%, #277800 100%) !important;
     border-radius: 1.25rem 1.25rem 0.25rem 1.25rem !important;
-    box-shadow: 0 2px 8px rgba(253, 184, 19, 0.35);
+    box-shadow: 0 2px 8px rgba(50, 153, 0, 0.3);
     color: #ffffff !important;
     font-weight: 500;
     max-width: 85%;
     animation: chatMsgSlideInRight 0.25s ease;
+}
+
+/* FIX: Tắt animation khi user prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .chat-message.chat-message-from-bot,
+    .chat-message.chat-message-from-user {
+        animation: none;
+    }
 }
 
 @keyframes chatMsgSlideIn {
@@ -2723,7 +2786,9 @@ ul.user-stack-list li:hover {
     }
 }
 
-/* ---------- Buttons (nút trả lời nhanh) ---------- */
+/* ============================================================
+   QUICK REPLY BUTTONS
+   ============================================================ */
 .chat-button {
     border-radius: 2rem !important;
     font-weight: 600 !important;
@@ -2731,18 +2796,21 @@ ul.user-stack-list li:hover {
     padding: 0.5rem 1.1rem !important;
     transition: all 0.2s ease !important;
     letter-spacing: 0.01em;
+    /* FIX: Touch target đủ lớn */
+    min-height: 44px;
+    touch-action: manipulation;
 }
 
 .chat-button-primary {
     background: linear-gradient(135deg, #329900 0%, #277800 100%) !important;
     color: #fff !important;
-    box-shadow: 0 2px 8px rgba(253, 184, 19, 0.35) !important;
+    box-shadow: 0 2px 8px rgba(50, 153, 0, 0.3) !important;
     border: none !important;
 }
 
 .chat-button-primary:hover {
     background: linear-gradient(135deg, #277800 0%, #1d6000 100%) !important;
-    box-shadow: 0 4px 14px rgba(253, 184, 19, 0.5) !important;
+    box-shadow: 0 4px 14px rgba(50, 153, 0, 0.45) !important;
     transform: translateY(-1px) !important;
 }
 
@@ -2759,7 +2827,9 @@ ul.user-stack-list li:hover {
     transform: translateY(-1px) !important;
 }
 
-/* ---------- Input area ---------- */
+/* ============================================================
+   INPUT AREA
+   ============================================================ */
 .chat-layout .chat-footer {
     padding: 0.75rem 1rem !important;
     border-top: 2px solid #e8eef5 !important;
@@ -2786,6 +2856,10 @@ ul.user-stack-list li:hover {
     font-size: 0.9rem !important;
     border-radius: 1rem !important;
     color: #1a2e4a !important;
+    /* FIX: Ngăn iOS tự zoom khi focus vào input (font-size phải >= 16px tính theo CSS px thực tế)
+       Dùng 1rem = 16px để iOS không zoom, nhưng hiển thị nhỏ hơn qua transform */
+    font-size: 1rem !important;
+    /* FIX: Tắt autocorrect/autocapitalize nếu cần (qua HTML attr, không CSS) */
 }
 
 .chat-inputs textarea::placeholder {
@@ -2796,12 +2870,16 @@ ul.user-stack-list li:hover {
 .chat-input-send-button {
     width: 44px !important;
     height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
     border-radius: 50% !important;
     background: linear-gradient(135deg, #1E5189 0%, #184070 100%) !important;
     color: #329900 !important;
     margin: 4px !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease !important;
     box-shadow: 0 2px 8px rgba(30, 81, 137, 0.3) !important;
+    touch-action: manipulation;
+    cursor: pointer;
 }
 
 .chat-input-send-button:hover {
@@ -2809,7 +2887,13 @@ ul.user-stack-list li:hover {
     box-shadow: 0 4px 14px rgba(30, 81, 137, 0.45) !important;
 }
 
-/* ---------- Powered by ---------- */
+.chat-input-send-button:active {
+    transform: scale(0.93) !important;
+}
+
+/* ============================================================
+   POWERED BY
+   ============================================================ */
 .chat-powered-by {
     font-size: 0.72rem;
     opacity: 0.5;
@@ -2821,12 +2905,16 @@ ul.user-stack-list li:hover {
     color: #1E5189 !important;
 }
 
-/* ---------- Welcome/Get started ---------- */
+/* ============================================================
+   WELCOME SCREEN
+   ============================================================ */
 .chat-get-started {
     background: linear-gradient(160deg, #f4f7fb 0%, #e8f0fb 100%);
 }
 
-/* ---------- Typing animation ---------- */
+/* ============================================================
+   TYPING INDICATOR
+   ============================================================ */
 .chat-message-typing {
     background: #ffffff !important;
     border-radius: 1.25rem 1.25rem 1.25rem 0.25rem !important;
@@ -2838,7 +2926,9 @@ ul.user-stack-list li:hover {
     opacity: 0.7;
 }
 
-/* ---------- Scrollbar tùy chỉnh ---------- */
+/* ============================================================
+   SCROLLBAR — Desktop only (không hiển thị trên touch)
+   ============================================================ */
 .chat-layout .chat-body::-webkit-scrollbar {
     width: 4px;
 }
@@ -2856,7 +2946,9 @@ ul.user-stack-list li:hover {
     background: rgba(30, 81, 137, 0.45);
 }
 
-/* ---------- Links trong tin nhắn bot ---------- */
+/* ============================================================
+   LINKS TRONG TIN NHẮN BOT
+   ============================================================ */
 .chat-message.chat-message-from-bot a,
 .chat-message-markdown a {
     color: #1E5189 !important;
@@ -2872,6 +2964,9 @@ ul.user-stack-list li:hover {
     transition: all 0.15s ease;
     line-height: 1.5;
     word-break: break-word;
+    /* FIX: Tránh text quá dài tràn ra ngoài bubble */
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .chat-message.chat-message-from-bot a:hover,
@@ -2882,16 +2977,16 @@ ul.user-stack-list li:hover {
     box-shadow: 0 2px 6px rgba(30, 81, 137, 0.2);
 }
 
-/* Thêm icon 🔗 trước tất cả link */
 .chat-message.chat-message-from-bot a::before,
 .chat-message-markdown a::before {
     content: '↗';
     font-size: 0.85em;
     font-weight: 700;
     opacity: 0.7;
+    flex-shrink: 0;
 }
 
-/* Link Google Maps - đổi màu xanh lá */
+/* Google Maps */
 .chat-message.chat-message-from-bot a[href*="maps.app"],
 .chat-message.chat-message-from-bot a[href*="maps.google"],
 .chat-message-markdown a[href*="maps.app"],
@@ -2909,7 +3004,7 @@ ul.user-stack-list li:hover {
     font-size: 0.85em;
 }
 
-/* Link Facebook - màu xanh FB */
+/* Facebook */
 .chat-message.chat-message-from-bot a[href*="facebook"],
 .chat-message.chat-message-from-bot a[href*="fb.com"],
 .chat-message-markdown a[href*="facebook"],
@@ -2929,7 +3024,7 @@ ul.user-stack-list li:hover {
     font-size: 0.9em;
 }
 
-/* Link Zalo */
+/* Zalo */
 .chat-message.chat-message-from-bot a[href*="zalo"],
 .chat-message-markdown a[href*="zalo"] {
     color: #0068ff !important;
@@ -2943,7 +3038,7 @@ ul.user-stack-list li:hover {
     font-size: 0.85em;
 }
 
-/* Link trong tin nhắn user - trắng */
+/* Link trong tin nhắn user */
 .chat-message.chat-message-from-user a {
     color: rgba(255, 255, 255, 0.95) !important;
     background: rgba(255, 255, 255, 0.2) !important;
@@ -2951,130 +3046,265 @@ ul.user-stack-list li:hover {
 }
 
 /* ============================================================
-   📱 MOBILE OPTIMIZATION
-   ─ Tối ưu toàn diện cho màn hình nhỏ
+   📱 RESPONSIVE — Tablet (601px – 900px)
+   Window thu nhỏ một chút, vẫn giữ float
    ============================================================ */
-
-/* Font smoothing toàn cục cho mobile */
-* {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+@media (max-width: 900px) and (min-width: 601px) {
+    :root {
+        --chat--window--width: 360px;
+        --chat--window--height: 580px;
+    }
 }
 
-/* Tablet: thu nhỏ một chút */
+/* ============================================================
+   📱 RESPONSIVE — Mobile lớn (≤ 600px)
+   Window float, không full screen
+   ============================================================ */
 @media (max-width: 600px) {
     :root {
-        --chat--window--width: calc(100vw - 24px);
-        --chat--window--height: min(75dvh, 580px);
-        --chat--window--bottom: 80px;
-        --chat--window--right: 12px;
+        --chat--window--width: calc(100vw - 20px);
+        /* FIX: Dùng svh (small viewport height) thay dvh để tránh layout shift khi bàn phím ảo bật/tắt trên iOS */
+        --chat--window--height: min(72svh, 560px);
+        --chat--window--bottom: 78px;
+        --chat--window--right: 10px;
         --chat--window--border-radius: 1.25rem;
+        --chat--window--margin-bottom: 0;
     }
 
-    /* Tooltip thu nhỏ, đẩy sang trái */
+    /* FIX: max-width/max-height đúng với viewport */
+    .chat-window-wrapper {
+        max-width: calc(100vw - 20px) !important;
+        max-height: calc(100svh - 90px) !important;
+        right: 10px !important;
+        bottom: 78px !important;
+    }
+
+    /* Toggle: căn phải, không sát mép */
+    .chat-window-wrapper .chat-window-toggle {
+        margin-right: 0;
+        margin-bottom: 0;
+        bottom: 12px;
+        right: 12px;
+    }
+
+    /* Tooltip thu nhỏ */
     .sh-chat-tooltip {
         max-width: 230px;
-        right: 76px;
-        bottom: 88px;
+        right: 80px;
+        bottom: 90px;
         font-size: 0.8rem;
     }
 }
 
-/* Mobile nhỏ: full screen */
+/* ============================================================
+   📱 RESPONSIVE — Mobile nhỏ (≤ 480px)
+   Full screen khi chat mở
+   ============================================================ */
 @media (max-width: 480px) {
     :root {
         --chat--window--width: 100vw;
-        --chat--window--height: 100dvh;
+        /* FIX: 100dvh gây layout shift trên iOS khi bàn phím ảo bật.
+           Dùng 100% height của wrapper thay vì dvh */
+        --chat--window--height: 100%;
         --chat--window--bottom: 0;
         --chat--window--right: 0;
         --chat--window--border-radius: 0;
+        --chat--window--margin-bottom: 0;
     }
 
-    /* Xóa border-radius khi full screen */
+    /* ── Wrapper: fill toàn viewport ── */
+    .chat-window-wrapper {
+        /* FIX: Dùng 100dvh chính xác cho wrapper (không phải window bên trong) */
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        max-width: 100vw !important;
+        max-height: 100dvh !important;
+        pointer-events: none;
+    }
+
+    /* FIX: Chỉ window & toggle nhận pointer events */
+    .chat-window-wrapper .chat-window,
+    .chat-window-wrapper .chat-window-toggle {
+        pointer-events: auto;
+    }
+
+    /* ── Chat window: full screen ── */
     .chat-window-wrapper .chat-window {
         border-radius: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        max-width: 100vw !important;
         max-height: 100dvh !important;
+        margin-bottom: 0 !important;
+        box-shadow: none !important;
+        /* FIX: Đặt window ở góc dưới phải để transform-origin hoạt động đúng */
+        position: absolute !important;
+        bottom: 0 !important;
+        right: 0 !important;
     }
 
-    /* Safe area cho iPhone (notch / home bar) */
-    .chat-layout .chat-footer,
-    .chat-layout .chat-footer-wrapper {
-        padding-bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
+    /* FIX: Toggle nằm cố định góc dưới phải, không bị wrapper che */
+    .chat-window-wrapper .chat-window-toggle {
+        position: fixed !important;
+        bottom: 16px !important;
+        right: 16px !important;
+        /* FIX: Cộng safe area inset cho iPhone Home Bar */
+        bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px)) !important;
+        right: max(16px, env(safe-area-inset-right)) !important;
+        z-index: 10000;
+        margin: 0 !important;
     }
 
+    /* ── Safe area — Header (iOS notch) ── */
     .chat-layout .chat-header {
-        padding-top: max(0.75rem, env(safe-area-inset-top)) !important;
+        padding-top: max(0.85rem, calc(env(safe-area-inset-top) + 0.4rem)) !important;
+        padding-left: max(0.9rem, env(safe-area-inset-left)) !important;
+        padding-right: max(1rem, env(safe-area-inset-right)) !important;
+        min-height: calc(56px + env(safe-area-inset-top));
     }
 
-    /* Header compact hơn trên mobile */
+    /* ── Safe area — Footer (iPhone Home Bar) ── */
+    .chat-layout .chat-footer {
+        padding-bottom: max(0.6rem, calc(env(safe-area-inset-bottom) + 0.3rem)) !important;
+        padding-left: max(0.75rem, env(safe-area-inset-left)) !important;
+        padding-right: max(0.75rem, env(safe-area-inset-right)) !important;
+    }
+
+    /* ── Header compact ── */
     .chat-layout .chat-header {
-        padding: 0.65rem 1rem 0.65rem !important;
-        min-height: 56px;
+        padding-bottom: 0.65rem !important;
+        grid-template-columns: 36px 1fr auto !important;
+        column-gap: 0.55rem !important;
     }
 
-    .chat-layout .chat-header h1 {
-        font-size: 0.95rem !important;
-        line-height: 1.2 !important;
-    }
-
-    .chat-layout .chat-header p {
-        font-size: 0.7rem !important;
-    }
-
-    /* Logo nhỏ hơn trên mobile */
     .chat-layout .chat-header::before {
         width: 36px !important;
         height: 36px !important;
     }
 
-    /* Touch target tối thiểu 44px cho nút */
-    .chat-layout .chat-footer button,
-    .chat-window-toggle,
-    .chat-close-button {
-        min-width: 44px !important;
-        min-height: 44px !important;
-    }
-
-    /* Input area thoải mái hơn trên mobile */
-    .chat-layout .chat-input {
-        font-size: 1rem !important;
-        /* tránh auto-zoom trên iOS */
-        padding: 0.75rem 1rem !important;
-    }
-
-    /* Tin nhắn: padding thoải mái hơn */
-    .chat-message {
-        max-width: 90% !important;
+    .chat-layout .chat-header h1 {
         font-size: 0.88rem !important;
     }
 
-    /* Hide toggle button khi chat đang mở (full screen) */
+    .chat-layout .chat-header p {
+        font-size: 0.67rem !important;
+    }
+
+    /* ── Input: font-size 16px để tránh iOS auto-zoom ── */
+    .chat-inputs textarea {
+        font-size: 16px !important;
+        padding: 0.7rem 0.65rem !important;
+        min-height: 44px !important;
+        height: 44px !important;
+        /* FIX: Xử lý bàn phím ảo — body sẽ resize, input không nhảy */
+        position: relative;
+    }
+
+    /* ── Send button: đúng kích thước cho ngón tay ── */
+    .chat-input-send-button {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        font-size: 18px !important;
+        margin: 3px !important;
+    }
+
+    /* ── Input wrapper ── */
+    .chat-inputs {
+        border-radius: 0.875rem !important;
+    }
+
+    /* ── Footer padding ── */
+    .chat-layout .chat-footer {
+        border-radius: 0 !important;
+        border-top: 2px solid #e8eef5 !important;
+    }
+
+    /* ── Tin nhắn rộng hơn trên mobile ── */
+    .chat-message {
+        max-width: 92% !important;
+        font-size: 0.9rem !important;
+    }
+
+    .chat-messages-list {
+        padding: 0.75rem !important;
+    }
+
+    /* ── Hide toggle khi window đang mở (full screen) ── */
+    .chat-window-wrapper:has(.chat-window:not([style*="display: none"])) .chat-window-toggle {
+        display: none !important;
+    }
+
+    /* Fallback: hide toggle khi có class open */
     .chat-window-wrapper.chat-window-open .chat-window-toggle {
         display: none !important;
     }
 
-    /* Tooltip hiển thị phía trên, canh phải */
+    /* ── Tooltip: full width mobile ── */
     .sh-chat-tooltip {
-        right: 12px !important;
-        bottom: 88px !important;
-        max-width: calc(100vw - 24px) !important;
         left: 12px !important;
+        right: 12px !important;
+        bottom: max(84px, calc(env(safe-area-inset-bottom) + 80px)) !important;
+        max-width: calc(100vw - 24px) !important;
         width: auto !important;
         border-radius: 1rem !important;
     }
 
-    /* Tooltip mũi tên hướng xuống phải trên mobile */
     .sh-chat-tooltip::after {
         right: 28px !important;
+        left: auto !important;
+    }
+}
+
+/* ============================================================
+   📱 RESPONSIVE — Màn hình rất nhỏ (≤ 360px)
+   Điều chỉnh thêm cho các điện thoại cũ/nhỏ
+   ============================================================ */
+@media (max-width: 360px) {
+    .chat-layout .chat-header h1 {
+        font-size: 0.82rem !important;
+    }
+
+    .chat-layout .chat-header p {
+        font-size: 0.62rem !important;
+    }
+
+    .chat-message {
+        font-size: 0.86rem !important;
+    }
+
+    .chat-button {
+        font-size: 0.8rem !important;
+        padding: 0.45rem 0.9rem !important;
+    }
+}
+
+/* ============================================================
+   ⌨️ VIRTUAL KEYBOARD — Xử lý bàn phím ảo trên mobile
+   Dùng interactive-widget=resizes-content (qua meta viewport)
+   CSS: đảm bảo body không bị scroll lên khi bàn phím bật
+   ============================================================ */
+@supports (height: 100dvh) {
+    @media (max-width: 480px) {
+        .chat-window-wrapper {
+            height: 100dvh !important;
+        }
+
+        .chat-window-wrapper .chat-window {
+            height: 100dvh !important;
+        }
     }
 }
 
 /* ============================================================
    💬 CHAT TEASER TOOLTIP — Sơn Hùng
-   Hiện phía trên nút toggle để thu hút người dùng
    ============================================================ */
-
-/* Container bọc ngoài nút toggle để định vị tooltip */
 .sh-chat-tooltip {
     position: fixed;
     bottom: 96px;
@@ -3084,9 +3314,7 @@ ul.user-stack-list li:hover {
     border-radius: 1rem 1rem 0.25rem 1rem;
     box-shadow:
         0 8px 32px rgba(30, 81, 137, 0.18),
-        0 2px 8px rgba(0, 0, 0, 0.08),
-        inset 4px 0 0 0 #1E5189;
-    /* ← Đường accent xanh dương bên trái */
+        0 2px 8px rgba(0, 0, 0, 0.08);
     padding: 0.85rem 2.2rem 0.85rem 1rem;
     z-index: 9998;
     border: 1.5px solid rgba(30, 81, 137, 0.12);
@@ -3094,13 +3322,12 @@ ul.user-stack-list li:hover {
     display: flex;
     align-items: flex-start;
     gap: 0.6rem;
-
-    /* Animation xuất hiện */
     animation: tooltipSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     transform-origin: bottom right;
+    /* FIX: Không block click-through khi ẩn */
+    will-change: transform, opacity;
 }
 
-/* Đuôi mũi tên chỉ xuống nút chat */
 .sh-chat-tooltip::after {
     content: '';
     position: absolute;
@@ -3112,19 +3339,16 @@ ul.user-stack-list li:hover {
     filter: drop-shadow(0 2px 2px rgba(30, 81, 137, 0.1));
 }
 
-/* ::before không cần nữa — đã dùng border-left thật */
 .sh-chat-tooltip::before {
     display: none;
 }
 
-/* Icon bên trái */
 .sh-chat-tooltip__icon {
     font-size: 1.3rem;
     flex-shrink: 0;
     margin-top: 1px;
 }
 
-/* Phần text */
 .sh-chat-tooltip__body {
     flex: 1;
     min-width: 0;
@@ -3153,6 +3377,10 @@ ul.user-stack-list li:hover {
     cursor: pointer;
     transition: background 0.15s, transform 0.15s;
     letter-spacing: 0.01em;
+    /* FIX: Touch target */
+    min-height: 32px;
+    align-items: center;
+    touch-action: manipulation;
 }
 
 .sh-chat-tooltip__cta:hover {
@@ -3160,13 +3388,12 @@ ul.user-stack-list li:hover {
     transform: scale(1.04);
 }
 
-/* Nút đóng (X) — position absolute để không bị flex đẩy lệch */
 .sh-chat-tooltip__close {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     background: rgba(30, 81, 137, 0.08);
     border: none;
@@ -3180,6 +3407,15 @@ ul.user-stack-list li:hover {
     line-height: 1;
     transition: background 0.15s, color 0.15s;
     flex-shrink: 0;
+    /* FIX: Touch target đủ lớn */
+    touch-action: manipulation;
+}
+
+.sh-chat-tooltip__close::before {
+    /* FIX: Mở rộng hit area mà không thay đổi visual */
+    content: '';
+    position: absolute;
+    inset: -8px;
 }
 
 .sh-chat-tooltip__close:hover {
@@ -3193,7 +3429,7 @@ ul.user-stack-list li:hover {
     pointer-events: none;
 }
 
-/* Keyframes */
+/* ── Keyframes ── */
 @keyframes tooltipSlideIn {
     from {
         opacity: 0;
@@ -3215,5 +3451,19 @@ ul.user-stack-list li:hover {
     to {
         opacity: 0;
         transform: scale(0.8) translateY(8px);
+    }
+}
+
+/* FIX: Tắt animation tooltip khi prefer-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .sh-chat-tooltip {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .sh-chat-tooltip.sh-hidden {
+        animation: none;
+        opacity: 0;
     }
 }
